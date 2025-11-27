@@ -57,8 +57,18 @@ class ListingIntelligence:
         comparable_indices = indices[0][1:6]
         comparables = self.listings.iloc[comparable_indices].copy()
 
-        # Add distance score
-        comparables['similarity_score'] = 100 * (1 - distances[0][1:6] / distances[0][1:6].max())
+        # Add similarity score using inverse distance
+        # Convert to similarity: smaller distance = higher similarity
+        # Use exponential decay to map distance to 0-100% range
+        max_distance = distances[0][1:6].max()
+        if max_distance > 0:
+            # Normalize distances to 0-1 range, then convert to similarity
+            normalized_distances = distances[0][1:6] / max_distance
+            # Use exponential mapping: e^(-2*d) gives good spread from ~14% to 100%
+            comparables['similarity_score'] = 100 * np.exp(-2 * normalized_distances)
+        else:
+            # All distances are 0 (perfect matches)
+            comparables['similarity_score'] = 100.0
 
         return comparables[[
             'name', 'accommodates', 'bedrooms', 'bathrooms', 'price',
