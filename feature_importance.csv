@@ -1,0 +1,29 @@
+Feature,Importance
+accommodates_x_review_scores_location,0.24950214203945953
+bedrooms_x_bathrooms,0.16989700753360415
+room_type_Private room,0.12520270474677905
+min_nights_regulation_regulated,0.08167353193014508
+reviews_per_month,0.07866939991376455
+amenities_count,0.062162924114743744
+availability_rate,0.04162826792656374
+number_of_reviews,0.036582561329426055
+host_acceptance_rate,0.03547798047048865
+neighbourhood_cleansed_Ville-Marie,0.0340993877989245
+room_density,0.025580267087462742
+neighbourhood_zone_2,0.014651146914395641
+neighbourhood_cleansed_Le Plateau-Mont-Royal,0.014561231176820465
+neighbourhood_cleansed_Cote-des-Neiges–Notre-Dame-de-Grace,0.013613338511929552
+neighbourhood_cleansed_Le Sud-Ouest,0.004744077904847081
+neighbourhood_cleansed_Mercier-Hochelaga-Maisonneuve,0.004526519162370579
+room_type_Shared room,0.002185830463185559
+neighbourhood_cleansed_Rosemont-La Petite-Patrie,0.001961282479416294
+neighbourhood_cleansed_Verdun,0.0010809541399530633
+neighbourhood_cleansed_Villeray-Saint-Michel-Parc-Extension,0.0007453150933717464
+neighbourhood_cleansed_Saint-Laurent,0.0004437596864396342
+neighbourhood_cleansed_Lachine,0.0003268186439704664
+neighbourhood_cleansed_Mont-Royal,0.00026894368118418464
+neighbourhood_cleansed_Outremont,0.00017859751303554087
+room_type_Hotel room,0.00014539775396395737
+neighbourhood_cleansed_Pierrefonds-Roxboro,8.025284534072333e-05
+neighbourhood_cleansed_Cote-Saint-Luc,1.0359138413878966e-05
+neighbourhood_cleansed_Dorval,0.0
