@@ -483,7 +483,7 @@ with tab2:
                                    'Rating', 'Amenities', 'Similarity']
             comp_display['Price/Night'] = comp_display['Price/Night'].apply(lambda x: f"${x:.0f}")
             comp_display['Rating'] = comp_display['Rating'].apply(lambda x: f"{x:.2f}★" if pd.notna(x) else "N/A")
-            comp_display['Similarity'] = comp_display['Similarity'].apply(lambda x: f"{x:.1%}")
+            comp_display['Similarity'] = comp_display['Similarity'].apply(lambda x: f"{x:.1f}%")
 
             st.dataframe(comp_display, use_container_width=True, hide_index=True)
 
