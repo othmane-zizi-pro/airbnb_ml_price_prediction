@@ -11,6 +11,9 @@ __pycache__/
 add_optuna_tuning.py
 export_model_from_notebook.py
 run_model_export.py
+add_hyperparameter_saving.py
+compress_model.py
+update_notebook_joblib.py
 
 # OS files
 .DS_Store
