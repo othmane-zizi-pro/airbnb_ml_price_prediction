@@ -1,5 +1,5 @@
 """
-REVOLUTIONARY LISTING CLUSTERING FOR AIRBNB MONTREAL
+LISTING CLUSTERING FOR AIRBNB MONTREAL
 =====================================================
 
 This creates ACTIONABLE market segments that hosts can actually use to:
