@@ -1,0 +1,19 @@
+# Model files (too large for GitHub)
+rf_model.pkl
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Backup files
+*.bak
+*_backup.py
+
+# Temporary scripts
+add_optuna_tuning.py
+export_model_from_notebook.py
+run_model_export.py
+
+# OS files
+.DS_Store

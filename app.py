@@ -260,7 +260,7 @@ with tab1:
     - The model uses **{len(selected_features)}** features selected via Elastic Net regularization
     - Random Forest captures non-linear relationships and feature interactions automatically
 
-    💡 *The full notebook analysis achieved **70.5% R²** - see comparison below for details.*
+    💡 *The full notebook analysis achieved **{metrics['r2_score']:.1%} R²** - see comparison below for details.*
     """)
 
     st.markdown("---")
@@ -277,8 +277,8 @@ with tab1:
             'Model 4: OLS (Neighbourhood + Engineered)',
             'Random Forest (Selected)'
         ],
-        'Test R²': [0.52, 0.55, 0.58, 0.62, 0.7048],  # Actual notebook result
-        'Test MAE ($)': [75.00, 70.00, 65.00, 60.00, 57.04],  # Actual notebook result
+        'Test R²': [0.52, 0.55, 0.58, 0.62, metrics['r2_score']],  # Last value from loaded model
+        'Test MAE ($)': [75.00, 70.00, 65.00, 60.00, metrics['mae_dollar']],  # Last value from loaded model
         'Model Type': ['Linear', 'Linear', 'Linear', 'Linear', 'Ensemble']
     })
 
@@ -297,10 +297,10 @@ with tab1:
         hide_index=True
     )
 
-    st.info("""
+    st.info(f"""
     **Why Random Forest?**
-    - **Best R² Score**: 0.7048 (explains 70.5% of variance)
-    - **Lowest Prediction Error**: $57.04 MAE
+    - **Best R² Score**: {metrics['r2_score']:.4f} (explains {metrics['r2_score']:.1%} of variance)
+    - **Lowest Prediction Error**: ${metrics['mae_dollar']:.2f} MAE
     - **Non-linear patterns**: Automatically captures complex relationships
     - **No manual feature engineering needed**: Handles interactions naturally
     """)
