@@ -51,6 +51,21 @@ def load_model_and_data():
         with open('model_metrics.json', 'r') as f:
             metrics = json.load(f)
 
+        # Load hyperparameters
+        if os.path.exists('model_hyperparameters.json'):
+            with open('model_hyperparameters.json', 'r') as f:
+                hyperparameters = json.load(f)
+        else:
+            # Default hyperparameters if file doesn't exist
+            hyperparameters = {
+                'n_estimators': 100,
+                'max_depth': 20,
+                'min_samples_split': 10,
+                'min_samples_leaf': 4,
+                'max_features': 'sqrt',
+                'random_state': 42
+            }
+
         # Load feature importance
         if os.path.exists('feature_importance.csv'):
             feature_importance = pd.read_csv('feature_importance.csv')
@@ -62,7 +77,7 @@ def load_model_and_data():
             }).sort_values('Importance', ascending=False)
 
         # Return dummy lists for categorical/numerical (not needed for predictions)
-        return rf_model, selected_features, metrics, feature_importance, [], []
+        return rf_model, selected_features, metrics, feature_importance, hyperparameters, [], []
 
     # Otherwise, train a new model
     st.sidebar.warning("⚠ Training new model (export from notebook for better performance)")
@@ -207,11 +222,21 @@ def load_model_and_data():
         'Importance': rf_model.feature_importances_
     }).sort_values('Importance', ascending=False)
 
-    return rf_model, selected_features, metrics, feature_importance, available_numerical, available_categorical
+    # Default hyperparameters for trained model
+    hyperparameters = {
+        'n_estimators': 100,
+        'max_depth': 20,
+        'min_samples_split': 10,
+        'min_samples_leaf': 4,
+        'max_features': 'sqrt',
+        'random_state': 42
+    }
+
+    return rf_model, selected_features, metrics, feature_importance, hyperparameters, available_numerical, available_categorical
 
 # Load model
 with st.spinner('Loading model... This may take a moment on first load.'):
-    rf_model, selected_features, metrics, feature_importance, available_numerical, available_categorical = load_model_and_data()
+    rf_model, selected_features, metrics, feature_importance, hyperparameters, available_numerical, available_categorical = load_model_and_data()
 
 # Initialize Listing Intelligence if available
 if INTELLIGENCE_AVAILABLE:
@@ -666,14 +691,15 @@ with tab4:
 # Sidebar
 with st.sidebar:
     st.header("About")
-    st.markdown("""
+    st.markdown(f"""
     This price prediction app uses:
-    - **Random Forest Regression** (100 trees)
+    - **Random Forest Regression** ({hyperparameters['n_estimators']} trees, max depth {hyperparameters['max_depth']})
     - **Elastic Net** for feature selection
     - **Montreal Airbnb** historical data
+    - **Optuna** hyperparameter optimization
 
-    The model achieves an R² of {:.2%} on test data.
-    """.format(metrics['r2_score']))
+    The model achieves an R² of {metrics['r2_score']:.2%} on test data.
+    """)
 
     st.markdown("---")
     st.markdown("Built with Streamlit")
