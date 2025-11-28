@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
+import joblib
 import json
 import os
 from sklearn.ensemble import RandomForestRegressor
@@ -41,13 +41,11 @@ def load_model_and_data():
     if os.path.exists('rf_model.pkl') and os.path.exists('model_metrics.json') and os.path.exists('selected_features.pkl'):
         st.sidebar.success("✓ Using exported model from notebook")
 
-        # Load the trained model
-        with open('rf_model.pkl', 'rb') as f:
-            rf_model = pickle.load(f)
+        # Load the trained model (compressed with joblib)
+        rf_model = joblib.load('rf_model.pkl')
 
         # Load selected features
-        with open('selected_features.pkl', 'rb') as f:
-            selected_features = pickle.load(f)
+        selected_features = joblib.load('selected_features.pkl')
 
         # Load metrics
         with open('model_metrics.json', 'r') as f:
